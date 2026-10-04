@@ -1,0 +1,313 @@
+{
+  "_comentario": "Golden set de práctica del Taller 03 v2. Cada tarea es un PDF y una lista de comprobaciones que evaluar_solver.py ejecuta sobre la carpeta de salida del solver. La verdad de cada cifra NO se escribe a mano: el campo verdad_py es código que el evaluador ejecuta y que deja el valor en la variable `verdad`. Tipos: archivo, secciones, palabras_max, paginas_max, cifra (la verdad aparece en una línea que casa con `etiqueta`), cifra_presente (la verdad aparece en algún lugar del entregable), contiene, ipynb_ejecutado, procedencia. Tipos para paquetes que se completan en su sitio: celdas_intactas (ids, orden y hashes del contrato), celdas_completas (ninguna celda editable con ... o con el marcador, salvo las de `excepto`), verificador_externo (corre el verificador del paquete en una copia con el entregable, aplicando solo en celdas editables los reemplazos declarados, y exige el texto de `espera`).",
+  "tareas": [
+    {
+      "id": "A",
+      "pdf": "enunciados/tarea-a-generativo-discriminativo.pdf",
+      "entregable": "reporte.md",
+      "checks": [
+        {
+          "id": "A01",
+          "tipo": "archivo",
+          "patron": "reporte.md"
+        },
+        {
+          "id": "A02",
+          "tipo": "archivo",
+          "patron": "**/*.png",
+          "minimo": 1
+        },
+        {
+          "id": "A03",
+          "tipo": "secciones",
+          "lista": [
+            "Introducción",
+            "Metodología",
+            "Resultados",
+            "Discusión",
+            "Conclusiones"
+          ],
+          "en_orden": true
+        },
+        {
+          "id": "A04",
+          "tipo": "palabras_max",
+          "valor": 1200
+        },
+        {
+          "id": "A05",
+          "tipo": "cifra_presente",
+          "verdad_py": "verdad = 569",
+          "tolerancia": 0
+        },
+        {
+          "id": "A06",
+          "tipo": "cifra",
+          "etiqueta": "(?i)naive|bayes|\\bNB\\b|gaussian",
+          "verdad_py": [
+            "from sklearn.datasets import load_breast_cancer",
+            "from sklearn.model_selection import train_test_split",
+            "from sklearn.naive_bayes import GaussianNB",
+            "from sklearn.metrics import accuracy_score",
+            "X, y = load_breast_cancer(return_X_y=True)",
+            "Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)",
+            "verdad = accuracy_score(yte, GaussianNB().fit(Xtr, ytr).predict(Xte))"
+          ],
+          "tolerancia": 0.006
+        },
+        {
+          "id": "A07",
+          "tipo": "cifra",
+          "etiqueta": "(?i)log[íi]stic|\\bLR\\b|logreg",
+          "verdad_py": [
+            "from sklearn.datasets import load_breast_cancer",
+            "from sklearn.model_selection import train_test_split",
+            "from sklearn.linear_model import LogisticRegression",
+            "from sklearn.preprocessing import StandardScaler",
+            "from sklearn.pipeline import make_pipeline",
+            "from sklearn.metrics import accuracy_score",
+            "X, y = load_breast_cancer(return_X_y=True)",
+            "Xtr, Xte, ytr, yte = train_test_split(X, y, test_size=0.3, stratify=y, random_state=42)",
+            "m = make_pipeline(StandardScaler(), LogisticRegression(max_iter=5000)).fit(Xtr, ytr)",
+            "verdad = accuracy_score(yte, m.predict(Xte))"
+          ],
+          "tolerancia": 0.012
+        },
+        {
+          "id": "A08",
+          "tipo": "procedencia",
+          "minimo": 0.85
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "pdf": "enunciados/tarea-b-temperatura-top-p.pdf",
+      "entregable": "*.ipynb",
+      "checks": [
+        {
+          "id": "B01",
+          "tipo": "archivo",
+          "patron": "*.ipynb"
+        },
+        {
+          "id": "B02",
+          "tipo": "ipynb_ejecutado"
+        },
+        {
+          "id": "B03",
+          "tipo": "cifra_presente",
+          "verdad_py": [
+            "import numpy as np",
+            "z = np.array([2.0, 1.0, 0.5, 0.2, -1.0, -3.0]) / 0.5",
+            "p = np.exp(z - z.max()); p /= p.sum()",
+            "verdad = float(-(p * np.log2(p)).sum())"
+          ],
+          "tolerancia": 0.00051
+        },
+        {
+          "id": "B04",
+          "tipo": "cifra_presente",
+          "verdad_py": [
+            "import numpy as np",
+            "z = np.array([2.0, 1.0, 0.5, 0.2, -1.0, -3.0])",
+            "p = np.exp(z - z.max()); p /= p.sum()",
+            "verdad = float(-(p * np.log2(p)).sum())"
+          ],
+          "tolerancia": 0.00051
+        },
+        {
+          "id": "B05",
+          "tipo": "cifra_presente",
+          "verdad_py": [
+            "import numpy as np",
+            "z = np.array([2.0, 1.0, 0.5, 0.2, -1.0, -3.0]) / 2",
+            "p = np.exp(z - z.max()); p /= p.sum()",
+            "verdad = float(-(p * np.log2(p)).sum())"
+          ],
+          "tolerancia": 0.00051
+        },
+        {
+          "id": "B06",
+          "tipo": "cifra_presente",
+          "verdad_py": [
+            "import numpy as np",
+            "z = np.array([2.0, 1.0, 0.5, 0.2, -1.0, -3.0])",
+            "p = np.exp(z - z.max()); p /= p.sum()",
+            "verdad = float(p[0] / p[:4].sum())"
+          ],
+          "tolerancia": 0.00051
+        },
+        {
+          "id": "B07",
+          "tipo": "contiene",
+          "lista": [
+            "t0",
+            "t1",
+            "t2",
+            "t3"
+          ]
+        },
+        {
+          "id": "B08",
+          "tipo": "archivo",
+          "patron": "**/*.png",
+          "minimo": 1,
+          "o_imagen_en_ipynb": true
+        },
+        {
+          "id": "B09",
+          "tipo": "procedencia",
+          "minimo": 0.85
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "pdf": "enunciados/tarea-c-recuperacion-lexica-lsa.pdf",
+      "entregable": "reporte.pdf",
+      "checks": [
+        {
+          "id": "C01",
+          "tipo": "archivo",
+          "patron": "reporte.pdf"
+        },
+        {
+          "id": "C02",
+          "tipo": "paginas_max",
+          "valor": 2
+        },
+        {
+          "id": "C03",
+          "tipo": "secciones",
+          "lista": [
+            "Objetivo",
+            "Método",
+            "Resultados",
+            "Discusión"
+          ],
+          "en_orden": true
+        },
+        {
+          "id": "C04",
+          "tipo": "cifra",
+          "etiqueta": "(?i)tf.?idf",
+          "verdad_py": [
+            "import sys; sys.path.insert(0, '.')",
+            "from verdades import recuperacion",
+            "verdad = recuperacion('tfidf')['mrr']"
+          ],
+          "tolerancia": 0.006
+        },
+        {
+          "id": "C05",
+          "tipo": "cifra",
+          "etiqueta": "(?i)tf.?idf",
+          "verdad_py": [
+            "import sys; sys.path.insert(0, '.')",
+            "from verdades import recuperacion",
+            "verdad = recuperacion('tfidf')['hit@3']"
+          ],
+          "tolerancia": 0.006
+        },
+        {
+          "id": "C06",
+          "tipo": "cifra",
+          "etiqueta": "(?i)\\bLSA\\b|latente|svd",
+          "verdad_py": [
+            "import sys; sys.path.insert(0, '.')",
+            "from verdades import recuperacion",
+            "verdad = recuperacion('lsa')['mrr']"
+          ],
+          "tolerancia": 0.006
+        },
+        {
+          "id": "C07",
+          "tipo": "contiene",
+          "lista": [
+            "q5"
+          ]
+        },
+        {
+          "id": "C08",
+          "tipo": "procedencia",
+          "minimo": 0.85
+        }
+      ]
+    },
+    {
+      "id": "D",
+      "entrada": "enunciados/hackathon3_student",
+      "entregable": "Hackathon_3_Starter.ipynb",
+      "checks": [
+        {
+          "id": "D01",
+          "tipo": "archivo",
+          "patron": "Hackathon_3_Starter.ipynb"
+        },
+        {
+          "id": "D02",
+          "tipo": "celdas_intactas",
+          "contrato": "enunciados/hackathon3_student/contrato.json"
+        },
+        {
+          "id": "D03",
+          "tipo": "celdas_completas",
+          "contrato": "enunciados/hackathon3_student/contrato.json",
+          "excepto": [
+            "identidad"
+          ]
+        },
+        {
+          "id": "D04",
+          "tipo": "ipynb_ejecutado"
+        },
+        {
+          "id": "D05",
+          "tipo": "verificador_externo",
+          "paquete": "enunciados/hackathon3_student",
+          "contrato": "enunciados/hackathon3_student/contrato.json",
+          "comando": [
+            "python",
+            "verify_notebook.py"
+          ],
+          "espera": "VERIFICACIÓN TÉCNICA COMPLETA",
+          "reemplazos": {
+            "NOMBRE COMPLETO": "INTEGRANTE PENDIENTE"
+          }
+        },
+        {
+          "id": "D06",
+          "tipo": "cifra_presente",
+          "verdad_py": [
+            "import sys; sys.path.insert(0, 'enunciados/hackathon3_student')",
+            "from and_lab import crear_parametros, sigmoide, reiniciar_gradientes, perdida_lote, entrenar",
+            "def predecir(x1, x2, ps):",
+            "    w1, w2, b = ps",
+            "    return sigmoide(w1 * x1 + w2 * x2 + b)",
+            "def actualizar(ps, tasa):",
+            "    for p in ps: p.data = p.data - tasa * p.grad",
+            "def paso(ps, tasa):",
+            "    reiniciar_gradientes(ps); L = perdida_lote(predecir, ps); L.backward(); actualizar(ps, tasa); return L",
+            "ps = crear_parametros()",
+            "entrenar(paso, predecir, ps)",
+            "verdad = perdida_lote(predecir, ps).data"
+          ],
+          "tolerancia": 6e-07
+        },
+        {
+          "id": "D07",
+          "tipo": "contiene",
+          "lista": [
+            "4 de 4"
+          ]
+        },
+        {
+          "id": "D08",
+          "tipo": "procedencia",
+          "minimo": 0.8
+        }
+      ]
+    }
+  ]
+}

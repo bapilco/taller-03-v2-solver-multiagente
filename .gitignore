@@ -1,0 +1,7 @@
+corridas/
+resultados_solver*.csv
+resumen_solver*.csv
+parte0/reporte_sin_ejecutar.md
+parte0/medido.json
+__pycache__/
+.venv/

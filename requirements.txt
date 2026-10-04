@@ -1,0 +1,9 @@
+# Lab-03 · solver-v2 — kit del Taller 03 v2. Probado el 2026-10-02 sobre Python 3.14.7.
+pymupdf==1.28.2
+markdown-it-py==4.2.0
+scikit-learn==1.9.1
+numpy==2.5.3
+langgraph==1.2.12
+networkx==3.6.1
+nbformat==5.11.1
+nbconvert==7.17.1
