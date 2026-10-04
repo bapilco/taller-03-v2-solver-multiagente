@@ -7,3 +7,11 @@ langgraph==1.2.12
 networkx==3.6.1
 nbformat==5.11.1
 nbconvert==7.17.1
+# Agregado para el solver (Parte 1): la Tarea A (curva de aprendizaje) y la Tarea B
+# (gráfico de barras) piden una figura PNG; sin esto el Ejecutor falla con
+# ModuleNotFoundError al correr el script que el Programador genera.
+matplotlib==3.10.7
+# Agregado para el Redactor: la Tarea B pide un notebook EJECUTADO. nbclient (ya viene con
+# nbconvert) necesita un kernel registrado para correr las celdas; sin ipykernel falla con
+# `NoSuchKernel: python3`.
+ipykernel==6.30.1
